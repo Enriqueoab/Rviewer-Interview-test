@@ -1,0 +1,41 @@
+server:
+  port: 3000
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: Coffee-machine-task
+  profiles:
+    active:
+      - local
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    root: OFF
+
+# Local profile settings
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:h2:file:./src/main/resources/db/CoffeeMachineTaskDb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
